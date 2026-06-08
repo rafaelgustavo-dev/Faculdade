@@ -1,0 +1,186 @@
+iniciar motor de física 3D
+
+carregar cenário/chão
+ câmera
+
+criar lista de objetos
+
+
+***configurar objeto 3D
+
+    posição X
+    posição Y
+    posição Z
+
+    velocidade(movimento)
+
+    largura
+    altura
+    profundidade
+
+    cor atual
+
+    textura/imagem do personagem
+
+    hitbox
+
+    estado_colisão
+
+fim configuração dos objetos
+
+
+**criar hitbox dos objetos
+
+func criar_hitbox(
+        largura,
+        altura,
+        profundidade
+)
+
+    criar caixa de colisão 3D
+
+retorna hitbox
+
+Fim func hitbox
+
+***Criar personagem
+
+Func criar_personagem(
+        posição,
+        textura,
+        tamanho_hitbox
+)
+
+    criar modelo visual
+
+    aplicar imagem/textura no modelo
+
+    criar hitbox invisível
+
+    posicionar hitbox junto ao personagem
+
+    definir cor inicial:
+        VERDE
+
+    adicionar objeto na lista
+
+Retorna personagem
+
+Fim func personagem
+
+
+***Criar objeto que vai se movimentar/jogador
+
+jogador =criar_personagem(
+    posição inicial,
+    imagem do personagem,
+    tamanho da hitbox
+)
+
+
+***Criar objetos do cenario/estaticos 
+
+PARA cada objeto do cenário FAÇA
+
+    criar_personagem(
+        posição aleatória,
+        textura aleatória,
+        tamanho hitbox
+    )
+
+FIM PARA
+
+***Fazer movimentação do “personagem”
+
+FUNÇÃO controlar_jogador()
+
+    SE tecla W pressionada
+        mover para frente
+
+    SE tecla S pressionada
+        mover para trás
+
+    SE tecla A pressionada
+        mover para esquerda
+
+    SE tecla D pressionada
+        mover para direita
+
+    SE tecla ESPAÇO pressionada
+        pular
+
+FIM FUNÇÃO
+
+*** Criar colisao
+
+FUNÇÃO verificar_colisão(
+        objeto1,
+        objeto2
+)
+
+    comparar limites das hitboxes
+
+    SE hitboxes se encostarem ENTÃO
+
+        RETORNAR VERDADEIRO
+
+    SENÃO
+
+        RETORNAR FALSO
+
+FIM FUNÇÃO
+
+****Efeito da colisao
+
+FUNÇÃO atualizar_cor(objeto)
+
+    SE objeto.estado_colisão = VERDADEIRO
+
+        mudar cor da hitbox para:
+            VERMELHO
+
+    SENÃO
+
+        mudar cor da hitbox para:
+            VERDE
+
+FIM FUNÇÃO
+
+
+ENQUANTO simulador estiver aberto FAÇA
+
+    atualizar física do mundo 3D
+
+    controlar_jogador()
+
+    PARA cada objeto A da lista
+
+        colisão = FALSO
+
+        PARA cada objeto B da lista
+
+            SE A diferente de B ENTÃO
+
+                SE verificar_colisão(A, B)
+
+                    colisão = VERDADEIRO
+
+                FIM SE
+
+            FIM SE
+
+        FIM PARA
+
+        A.estado_colisão =colisão
+
+        atualizar_cor(A)
+
+    FIM PARA
+
+    renderizar cenário
+
+    renderizar personagens
+
+    renderizar hitboxes
+
+FIM ENQUANTO
