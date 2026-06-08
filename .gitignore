@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Chaves e segredos
+.env
+.env.*
+*.key
+*.pem
+secrets.json
+credentials.json
+
+# IDEs
+.vscode/
+.idea/
+*.DS_Store
+
+# Outputs
+*.log
+*.png
+*.pdf
