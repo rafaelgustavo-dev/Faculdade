@@ -217,20 +217,20 @@ def main():
         mpatches.Patch(color='#e74c3c', label='Origem / Destino'),
         mpatches.Patch(color='#27ae60',
             label=f"Principal: {' > '.join(NODES[n] for n in rota1)}\n"
-                  f"  Com condicoes: {tempo1} min  |  Sem variaveis: {tempo_base1} min"),
+                  f"  Tempo estimado: {tempo1} min  |  Tempo base: {tempo_base1} min"),
     ]
     if rota2:
         legenda.append(mpatches.Patch(color='#e67e22',
             label=f"Alternativa: {' > '.join(NODES[n] for n in rota2)}\n"
-                  f"  Com condicoes: {tempo2} min  |  Sem variaveis: {tempo_base2} min"))
+                  f"  Tempo estimado: {tempo2} min  |  Tempo base: {tempo_base2} min"))
 
     ax.legend(handles=legenda, loc='lower left', fontsize=8, framealpha=0.95)
 
     print(f"\nRota principal:   {' > '.join(NODES[n] for n in rota1)}")
-    print(f"  Com condicoes: {tempo1} min  |  Sem variaveis: {tempo_base1} min")
+    print(f"  Tempo estimado: {tempo1} min  |  Tempo base: {tempo_base1} min")
     if rota2:
         print(f"Rota alternativa: {' > '.join(NODES[n] for n in rota2)}")
-        print(f"  Com condicoes: {tempo2} min  |  Sem variaveis: {tempo_base2} min")
+        print(f"  Tempo estimado: {tempo2} min  |  Tempo base: {tempo_base2} min")
 
     plt.show()
 
