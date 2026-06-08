@@ -16,40 +16,38 @@ NODES = {
 
 # (origem, destino, tempo_base_em_minutos) — fluxo livre, sem pico/chuva
 BASE_EDGES = [
-    ( 0,  1,  8),   # Centro - Batel           (Av. Sete de Setembro)
-    ( 0,  3, 10),   # Centro - Bigorrilho       (Av. Batel)
-    ( 0, 12,  7),   # Centro - Sao Francisco    (R. Mateus Leme)
-    ( 0, 13,  9),   # Centro - Reboucas         (Av. Republica Argentina)
-    ( 0, 10, 19),   # Centro - Bacacheri        (Linha Verde)
-    ( 1,  2,  7),   # Batel - Agua Verde        (Av. do Batel)
-    ( 1,  3,  7),   # Batel - Bigorrilho        (Av. do Batel)
-    ( 1, 13,  6),   # Batel - Reboucas          (Av. Visconde de Guarapuava)
-    ( 2,  3,  8),   # Agua Verde - Bigorrilho   (Av. Iguacu)
-    ( 2,  4, 12),   # Agua Verde - Portao       (Av. Wenceslau Braz)
-    ( 2, 13,  9),   # Agua Verde - Reboucas     (Av. Republica Argentina)
-    ( 3,  4, 10),   # Bigorrilho - Portao       (Av. Manoel Ribas)
-    ( 3, 12,  9),   # Bigorrilho - Sao Francisco(R. Mateus Leme)
-    ( 3, 14, 14),   # Bigorrilho - Pilarzinho   (BR-116)
-    ( 4,  5, 20),   # Portao - CIC              (Av. Rui Barbosa)
-    ( 4,  6, 21),   # Portao - Pinheirinho      (BR-476)
-    ( 4,  7, 17),   # Portao - Sitio Cercado    (Contorno Sul)
-    ( 5,  6, 17),   # CIC - Pinheirinho         (Contorno Sul)
-    ( 6,  7, 19),   # Pinheirinho - Sitio Cercado (Av. Comendador Franco)
-    ( 7,  8, 13),   # Sitio Cercado - Boqueirao (Av. Boqueirao)
-    ( 7, 13, 22),   # Sitio Cercado - Reboucas  (BR-116)
-    ( 8,  9, 16),   # Boqueirao - Cajuru        (Av. Mal. Floriano Peixoto)
-    ( 9, 10, 13),   # Cajuru - Bacacheri        (Av. Anita Garibaldi)
-    ( 9, 13, 14),   # Cajuru - Reboucas         (Av. Mal. Floriano Peixoto)
-    (10, 11, 11),   # Bacacheri - Boa Vista     (Av. Anita Garibaldi)
-    (10, 12, 14),   # Bacacheri - Sao Francisco (Av. Candido de Abreu)
-    (11, 12, 13),   # Boa Vista - Sao Francisco (Av. Candido de Abreu)
-    (11, 14,  9),   # Boa Vista - Pilarzinho    (Av. Anita Garibaldi)
-    (12, 14, 11),   # Sao Francisco - Pilarzinho(R. Dr. Faivre)
-    (13,  8, 21),   # Reboucas - Boqueirao      (Av. Senador Salgado Filho)
+    ( 0,  1,  8),   # Centro - Batel
+    ( 0,  3, 10),   # Centro - Bigorrilho
+    ( 0, 12,  7),   # Centro - Sao Francisco
+    ( 0, 13,  9),   # Centro - Reboucas
+    ( 0, 10, 19),   # Centro - Bacacheri
+    ( 1,  2,  7),   # Batel - Agua Verde
+    ( 1,  3,  7),   # Batel - Bigorrilho
+    ( 1, 13,  6),   # Batel - Reboucas
+    ( 2,  3,  8),   # Agua Verde - Bigorrilho
+    ( 2,  4, 12),   # Agua Verde - Portao
+    ( 2, 13,  9),   # Agua Verde - Reboucas
+    ( 3,  4, 10),   # Bigorrilho - Portao
+    ( 3, 12,  9),   # Bigorrilho - Sao Francisco
+    ( 3, 14, 14),   # Bigorrilho - Pilarzinho
+    ( 4,  5, 20),   # Portao - CIC
+    ( 4,  6, 21),   # Portao - Pinheirinho
+    ( 4,  7, 17),   # Portao - Sitio Cercado
+    ( 5,  6, 17),   # CIC - Pinheirinho
+    ( 6,  7, 19),   # Pinheirinho - Sitio Cercado
+    ( 7,  8, 13),   # Sitio Cercado - Boqueirao
+    ( 7, 13, 22),   # Sitio Cercado - Reboucas
+    ( 8,  9, 16),   # Boqueirao - Cajuru
+    ( 9, 10, 13),   # Cajuru - Bacacheri
+    ( 9, 13, 14),   # Cajuru - Reboucas
+    (10, 11, 11),   # Bacacheri - Boa Vista
+    (10, 12, 14),   # Bacacheri - Sao Francisco
+    (11, 12, 13),   # Boa Vista - Sao Francisco
+    (11, 14,  9),   # Boa Vista - Pilarzinho
+    (12, 14, 11),   # Sao Francisco - Pilarzinho
+    (13,  8, 21),   # Reboucas - Boqueirao
 ]
 
-# Posicoes tiradas do SVG oficial de divisao administrativa de Curitiba (1250x2080 px)
-# normalizadas dividindo pelo mesmo valor (altura) pra manter a proporcao geografica
 POS = {
      0: (3.41, 6.66),   1: (2.95, 6.46),   2: (3.18, 6.07),
      3: (2.70, 6.72),   4: (2.61, 5.49),   5: (1.08, 5.64),
@@ -62,19 +60,16 @@ DIAS = ['Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo']
 
 
 def calcular_peso(base, hora, dia, clima):
-    # Fator horario de pico (manha 7-9h, tarde 17-19h)
     if 7 <= hora <= 9 or 17 <= hora <= 19:
         fator_pico = random.gauss(1.65, 0.12)
     else:
         fator_pico = random.gauss(1.0, 0.08)
 
-    # Dias uteis tem mais transito que fins de semana
     if dia < 5:
         fator_dia = random.gauss(1.25, 0.09)
     else:
         fator_dia = random.gauss(0.82, 0.07)
 
-    # Clima afeta a velocidade media do transito
     if clima == 'tempestade':
         fator_clima = random.gauss(1.90, 0.16)
     elif clima == 'chuva':
@@ -82,7 +77,6 @@ def calcular_peso(base, hora, dia, clima):
     else:
         fator_clima = random.gauss(1.0, 0.05)
 
-    # garante que nenhum fator reduza demais o tempo
     fator_pico  = max(fator_pico, 0.6)
     fator_dia   = max(fator_dia, 0.5)
     fator_clima = max(fator_clima, 0.7)
@@ -91,8 +85,7 @@ def calcular_peso(base, hora, dia, clima):
 
 
 def construir_grafo(hora, dia, clima):
-    # seed fixo por combinacao de condicoes — garante que o grafo seja igual
-    # toda vez que rodar com os mesmos parametros
+    # seed fixo por combinacao de condicoes — garante que o grafo seja igual toda vez que rodar com os mesmos parametros
     random.seed(hora * 100 + dia * 10 + {'normal': 0, 'chuva': 1, 'tempestade': 2}[clima])
 
     G = nx.Graph()
@@ -109,7 +102,6 @@ def dijkstra(G, origem, destino):
     anterior = {n: None for n in G.nodes}
     dist[origem] = 0
     heap = [(0.0, origem)]
-    visitados = []
     ja_visto = set()
 
     while heap:
@@ -117,7 +109,6 @@ def dijkstra(G, origem, destino):
         if u in ja_visto:
             continue
         ja_visto.add(u)
-        visitados.append(u)
 
         if u == destino:
             break
@@ -129,7 +120,6 @@ def dijkstra(G, origem, destino):
                 anterior[v] = u
                 heapq.heappush(heap, (novo, v))
 
-    # reconstroi o caminho de tras pra frente
     caminho = []
     no = destino
     while no is not None:
@@ -138,24 +128,17 @@ def dijkstra(G, origem, destino):
     caminho.reverse()
 
     if not caminho or caminho[0] != origem:
-        return None, float('inf'), visitados
+        return None, float('inf')
 
-    return caminho, round(dist[destino], 1), visitados
+    return caminho, round(dist[destino], 1)
 
 
-def desenhar(ax, G, visitados_set, origem, destino, rota1=None, rota2=None, titulo=''):
+def desenhar(ax, G, origem, destino, rota1=None, rota2=None, titulo=''):
     ax.clear()
     ax.set_title(titulo, fontsize=10)
     ax.axis('off')
 
-    cores = []
-    for n in G.nodes:
-        if n in (origem, destino):
-            cores.append('#e74c3c')
-        elif n in visitados_set:
-            cores.append('#f39c12')
-        else:
-            cores.append('#aec6cf')
+    cores = ['#e74c3c' if n in (origem, destino) else '#aec6cf' for n in G.nodes]
 
     nx.draw_networkx_nodes(G, POS, ax=ax, node_color=cores, node_size=600)
     nx.draw_networkx_labels(G, POS, ax=ax, labels=NODES, font_size=7)
@@ -201,7 +184,7 @@ def main():
         print("Entrada invalida.")
         return
 
-    rota1, tempo1, visitados = dijkstra(G, origem, destino)
+    rota1, tempo1 = dijkstra(G, origem, destino)
 
     if rota1 is None:
         print("Sem caminho disponivel.")
@@ -209,20 +192,10 @@ def main():
 
     tempo_base1 = round(sum(G[u][v]['base'] for u, v in zip(rota1[:-1], rota1[1:])), 1)
 
-    fig, ax = plt.subplots(figsize=(12, 8))
+    _, ax = plt.subplots(figsize=(12, 8))
     plt.subplots_adjust(left=0.02, right=0.98, top=0.92, bottom=0.08)
 
     em_pico = (7 <= hora <= 9) or (17 <= hora <= 19)
-
-    # anima a busca em ~8 passos
-    passo = max(1, len(visitados) // 8)
-    for i in range(passo, len(visitados) + 1, passo):
-        titulo = (f"Dijkstra — {DIAS[dia]} {hora:02d}h | {clima}"
-                  + (" | PICO" if em_pico else "")
-                  + f"\nnos avaliados: {i}/{len(visitados)}  (arestas: base|atual em min)")
-        desenhar(ax, G, set(visitados[:i]), origem, destino, titulo=titulo)
-        plt.pause(0.3)
-
     # busca rota alternativa removendo as arestas da rota principal
     G2 = G.copy()
     for u, v in zip(rota1[:-1], rota1[1:]):
@@ -238,7 +211,7 @@ def main():
     titulo = (f"Resultado — {DIAS[dia]} {hora:02d}h | {clima}"
               + (" | PICO" if em_pico else "")
               + "\narestas: base|atual (min)")
-    desenhar(ax, G, set(), origem, destino, rota1=rota1, rota2=rota2, titulo=titulo)
+    desenhar(ax, G, origem, destino, rota1=rota1, rota2=rota2, titulo=titulo)
 
     legenda = [
         mpatches.Patch(color='#e74c3c', label='Origem / Destino'),
